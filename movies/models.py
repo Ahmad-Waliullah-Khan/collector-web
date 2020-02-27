@@ -43,7 +43,7 @@ class Movies(models.Model):
         db_table = 'movies'
         verbose_name = "Movie"
         verbose_name_plural = "Movies"
-        ordering = ['-updated_at']
+        ordering = ['-completed_watching_on']
 
     def __str__(self):
         return self.title
