@@ -25,7 +25,7 @@ SECRET_KEY = 'm6l*oz*t6rk0n8a)3*gl-(8l-ryq#7s^jv^&h=^217qduxt7#g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
     'tv',
     'movies',
     'games',
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'collection.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/files/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
