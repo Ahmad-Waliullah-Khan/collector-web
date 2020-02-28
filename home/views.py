@@ -37,8 +37,19 @@ def profile(request):
 @login_required
 def dashboard(request):
     if request.user.is_authenticated:
+        # find a way to pass books, movies, comics, games, shows related to the
+        # user to the tempalte context object.
+        # Later, paginate them
 
-        return render(request, 'home/dashboard.html', {})
+        return render(
+            request, 'home/dashboard.html',
+            {'books' : request.user.books.all(),
+            'comics' : request.user.movies.all(),
+            'games' : request.user.games.all(),
+            'shows' : request.user.tv.all(),
+            'movies' : request.user.movies.all(),
+            }
+        )
     else:
         return redirect("home:login")
 

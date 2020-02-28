@@ -1,5 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
+import os
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('uploads/tv', filename)
 
 class Shows(models.Model):
 
@@ -14,6 +21,10 @@ class Shows(models.Model):
         ('DIGITAL', 'Own Digitally'),
     ]
 
+    cover_image = models.FileField(upload_to=get_file_path,
+                        null=True,
+                        blank=True,
+                    )
     show_title = models.CharField(max_length=50)
     review = models.CharField(max_length=200)
     status = models.CharField(
@@ -36,7 +47,7 @@ class Shows(models.Model):
         null=True,
     )
     seasons_watched = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name='tv')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
