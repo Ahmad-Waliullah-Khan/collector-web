@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def login(request):
         if request.method == 'POST':
@@ -42,13 +44,64 @@ def dashboard(request):
         # user to the tempalte context object.
         # Later, paginate them
 
+        books_list = request.user.books.filter(user=request.user)
+        comics_list = request.user.comics.filter(user=request.user)
+        games_list = request.user.games.filter(user=request.user)
+        shows_list = request.user.tv.filter(user=request.user)
+        movies_list = request.user.movies.filter(user=request.user)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(movies_list, 6)
+        try:
+            movies = paginator.page(page)
+        except PageNotAnInteger:
+            movies = paginator.page(1)
+        except EmptyPage:
+            movies = paginator.page(paginator.num_pages)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(books_list, 6)
+        try:
+            books = paginator.page(page)
+        except PageNotAnInteger:
+            books = paginator.page(1)
+        except EmptyPage:
+            books = paginator.page(paginator.num_pages)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(comics_list, 6)
+        try:
+            comics = paginator.page(page)
+        except PageNotAnInteger:
+            comics = paginator.page(1)
+        except EmptyPage:
+            comics = paginator.page(paginator.num_pages)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(games_list, 6)
+        try:
+            games = paginator.page(page)
+        except PageNotAnInteger:
+            games = paginator.page(1)
+        except EmptyPage:
+            games = paginator.page(paginator.num_pages)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(shows_list, 6)
+        try:
+            shows = paginator.page(page)
+        except PageNotAnInteger:
+            shows = paginator.page(1)
+        except EmptyPage:
+            shows = paginator.page(paginator.num_pages)
+
         return render(
             request, 'home/dashboard.html',
-            {'books' : request.user.books.filter(user=request.user),
-            'comics' : request.user.comics.filter(user=request.user),
-            'games' : request.user.games.filter(user=request.user),
-            'shows' : request.user.tv.filter(user=request.user),
-            'movies' : request.user.movies.filter(user=request.user),
+            {'books' : books,
+            'comics' : comics,
+            'games' : games,
+            'shows' : shows,
+            'movies' : movies,
             }
         )
     else:

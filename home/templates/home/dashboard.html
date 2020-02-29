@@ -114,6 +114,27 @@
         </div>
         {% endfor %}
 
+        {% if movies.has_other_pages %}
+          <ul class="pagination">
+            {% if movies.has_previous %}
+              <li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in movies.paginator.page_range %}
+              {% if movies.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if movies.has_next %}
+              <li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
 
       </div>
       <!-- /.row -->
@@ -152,6 +173,29 @@
             </div>
           </div>
         {% endfor %}
+
+        {% if shows.has_other_pages %}
+          <ul class="pagination">
+            {% if shows.has_previous %}
+              <li><a href="?page={{ shows.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in shows.paginator.page_range %}
+              {% if shows.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if shows.has_next %}
+              <li><a href="?page={{ shows.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
       </div>
       <!-- /.row -->
 
@@ -191,6 +235,28 @@
       </div>
     {% endfor %}
 
+    {% if books.has_other_pages %}
+      <ul class="pagination">
+        {% if books.has_previous %}
+          <li><a href="?page={{ books.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in books.paginator.page_range %}
+          {% if books.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if books.has_next %}
+          <li><a href="?page={{ books.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
     </div>
     <!-- /.row -->
 
@@ -229,6 +295,29 @@
           </div>
         </div>
       {% endfor %}
+
+      {% if comics.has_other_pages %}
+        <ul class="pagination">
+          {% if comics.has_previous %}
+            <li><a href="?page={{ comics.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in comics.paginator.page_range %}
+            {% if comics.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if comics.has_next %}
+            <li><a href="?page={{ comics.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
     </div>
     <!-- /.row -->
 
@@ -268,6 +357,29 @@
           </div>
         </div>
       {% endfor %}
+
+      {% if games.has_other_pages %}
+        <ul class="pagination">
+          {% if games.has_previous %}
+            <li><a href="?page={{ games.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in games.paginator.page_range %}
+            {% if games.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if games.has_next %}
+            <li><a href="?page={{ games.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
     </div>
     <!-- /.row -->
 
