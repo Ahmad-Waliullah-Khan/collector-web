@@ -44,11 +44,11 @@ def dashboard(request):
 
         return render(
             request, 'home/dashboard.html',
-            {'books' : request.user.books.all(),
-            'comics' : request.user.movies.all(),
-            'games' : request.user.games.all(),
-            'shows' : request.user.tv.all(),
-            'movies' : request.user.movies.all(),
+            {'books' : request.user.books.filter(user=request.user),
+            'comics' : request.user.comics.filter(user=request.user),
+            'games' : request.user.games.filter(user=request.user),
+            'shows' : request.user.tv.filter(user=request.user),
+            'movies' : request.user.movies.filter(user=request.user),
             }
         )
     else:
