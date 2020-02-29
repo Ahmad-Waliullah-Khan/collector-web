@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
+from django.conf import settings
 
 def login(request):
         if request.method == 'POST':
